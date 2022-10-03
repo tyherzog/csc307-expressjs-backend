@@ -90,8 +90,10 @@ function findUserById(id) {
 
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
+    let rand_id = Math.floor(Math.random()*1000);
+    userToAdd.id = rand_id.toString();
     addUser(userToAdd);
-    res.status(200).end();
+    res.status(201).send(userToAdd);
 });
 
 function addUser(user){
@@ -103,7 +105,7 @@ app.delete('/users/:id', (req, res) => {
     let result = deleteUser(id);
     if (result === -1)
         res.status(404).send('Resource not found.');
-    res.status(200);
+    res.status(204);
 });
 
 function deleteUser(id){
