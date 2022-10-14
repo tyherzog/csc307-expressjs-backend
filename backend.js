@@ -105,7 +105,7 @@ app.delete('/users/:id', (req, res) => {
     let result = deleteUser(id);
     if (result === -1)
         res.status(404).send('Resource not found.');
-    res.status(204);
+    res.status(204).end();
 });
 
 function deleteUser(id){
